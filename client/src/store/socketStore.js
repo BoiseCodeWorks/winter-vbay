@@ -7,11 +7,12 @@ export default {
         initalizeSocket({ commit, dispatch }) {
             //establish connection with socket
             socket = io('//localhost:3000')
-            //Register all listeners
+            //Handle any on connection events 
             socket.on('CONNECTED', data => {
-                console.log('Connected to socket')
+                console.log('Connected to socket, villany may commence')
             })
 
+            //register all listeners
             socket.on('bid', data => {
                 commit('updateProduct', data)
             })

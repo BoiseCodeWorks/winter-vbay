@@ -2,8 +2,6 @@ import express from 'express'
 import _productService from '../Services/ProductService'
 import socket from '../socket/index'
 
-
-
 //PUBLIC
 export default class ProductsController {
     constructor() {
@@ -39,6 +37,7 @@ export default class ProductsController {
     async create(req, res, next) {
         try {
             let data = await _productService.create(req.body)
+            //notify sockets of a change
             socket.notifyBid(data)
             return res.status(201).send(data)
         } catch (error) { next(error) }
@@ -52,6 +51,7 @@ export default class ProductsController {
             }
             let data = await _productService.findOneAndUpdate({ _id: req.params.id }, newBid, { new: true })
             if (data) {
+                //notify sockets of new bid
                 socket.notifyBid(data)
                 return res.send(data)
             }
