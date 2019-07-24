@@ -58,25 +58,26 @@ img {
   max-width: 100%;
 }
 h1 img {
-  height: 1.2rem;
 }
 h4 {
   margin-top: 0.4rem;
 }
 
 #logo {
+  height: 3rem;
   animation-duration: 1s;
   animation-name: changefilter;
+  animation-timing-function: steps(2);
   animation-iteration-count: infinite;
   animation-direction: alternate;
+  /* filter: hue-rotate(0deg); */
 }
 @keyframes changefilter {
   from {
-    filter: hue-rotate(0);
+    filter: hue-rotate(0deg);
   }
-
   to {
-    filter: hue-rotate(200%);
+    filter: hue-rotate(400deg);
   }
 }
 </style>
