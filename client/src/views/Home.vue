@@ -57,7 +57,10 @@ img {
   height: 200px;
   max-width: 100%;
 }
-h1 img {
+.products {
+  align-content: center;
+  display: flex;
+  justify-content: center;
 }
 h4 {
   margin-top: 0.4rem;
