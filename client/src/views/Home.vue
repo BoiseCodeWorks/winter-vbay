@@ -1,11 +1,19 @@
 
 <template>
   <div class="products container">
-    <h1>
-      <img id="logo" alt="Vue logo" src="../assets/logo.png" />BAY
-    </h1>
-    <router-link :to="{name: 'create'}" v-if="$route.name == 'home'">create</router-link>
-    <router-view />
+    <div class="row">
+      <div class="col-12 title">
+        <img id="logo" alt="Vue logo" src="../assets/logo.png" />
+        <h1>Bay</h1>
+      </div>
+      <!-- <p>
+        <em>Your one stop shop for Nefarious Needs</em>
+      </p>-->
+      <div class="col-12">
+        <router-link :to="{name: 'create'}" v-if="$route.name == 'home'">create</router-link>
+        <router-view />
+      </div>
+    </div>
     <div class="row">
       <div
         v-for="product in products"
@@ -21,6 +29,7 @@
         <img :src="product.imgUrl" />
         <p>Price: {{product.price}}</p>
         <button class="btn btn-info mb-3" @click="bid(product)">Bid {{product.price+1}}</button>
+        <button class="btn btn-danger mb-3" @click="deleteProduct(product)">Hide fromm the FBI</button>
       </div>
     </div>
   </div>
@@ -46,6 +55,9 @@ export default {
     bid(product) {
       product.price += 1;
       this.$store.dispatch("bid", product);
+    },
+    deleteProduct(product) {
+      this.$store.dispatch("delete", product);
     }
   }
 };
@@ -54,12 +66,17 @@ export default {
 
 <style scoped>
 img {
-  height: 200px;
+  max-height: 200px;
   max-width: 100%;
 }
+
+.title {
+  display: flex;
+  justify-content: center;
+}
+
 .products {
   align-content: center;
-  display: flex;
   justify-content: center;
 }
 h4 {

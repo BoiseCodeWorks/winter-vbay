@@ -25,8 +25,13 @@ export default new Vuex.Store({
       if (index == -1) {
         state.products.push(data)
       } else {
-        // Vue.set(state.products, index, data)
         state.products.splice(index, 1, data)
+      }
+    },
+    deleteProduct(state, data) {
+      let index = state.products.findIndex(p => p._id == data._id)
+      if (index > -1) {
+        state.products.splice(index, 1)
       }
     }
   },
@@ -52,6 +57,16 @@ export default new Vuex.Store({
     async bid({ commit }, payload) {
       let res = await _api.put('products/' + payload._id + '/bid', payload)
       commit('updateProduct', res.data)
+    },
+    async delete({ commit }, payload) {
+      try {
+        await _api.delete('products/' + payload._id)
+        //commit('deleteProduct', payload)
+      } catch (error) {
+
+      }
+
     }
+
   }
 })

@@ -62,6 +62,7 @@ export default class ProductsController {
     async delete(req, res, next) {
         try {
             await _productService.findOneAndRemove({ _id: req.params.id })
+            socket.notifyDelete(req.params.id)
             return res.send("Successfully deleted")
         } catch (error) { next(error) }
     }
