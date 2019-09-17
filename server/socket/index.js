@@ -13,17 +13,6 @@ class Socket {
             message: "Successfully Connected"
         });
     }
-    joinRoom(data) {
-        this.io.join(data.boardId);
-    }
-    leaveRoom(data) {
-        this.io.leave(data.boardId);
-    }
-
-    notifyBoard(list) {
-        this.io.to(list.boardId).emit('list', list)
-    }
-
 
     notifyBid(product) {
         this.io.emit('bid', product)

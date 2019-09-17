@@ -21,14 +21,6 @@ export default {
                 commit('deleteProduct', data)
             })
 
-        },
-
-        joinRoom({ commit, dispatch }, boardId) {
-            socket.emit('join', { boardId })
-        },
-
-        leaveRoom({ commit, dispatch }, boardId) {
-            socket.emit('leave', { boardId })
         }
 
     }

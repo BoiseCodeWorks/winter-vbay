@@ -20,7 +20,6 @@ export default class ProductsController {
 
     async getAll(req, res, next) {
         try {
-            //only gets boards by user who is logged in
             let data = await _productService.find({})
             return res.send(data)
         }
@@ -37,7 +36,6 @@ export default class ProductsController {
     async create(req, res, next) {
         try {
             let data = await _productService.create(req.body)
-            //notify sockets of a change
             socket.notifyBid(data)
             return res.status(201).send(data)
         } catch (error) { next(error) }
@@ -51,7 +49,6 @@ export default class ProductsController {
             }
             let data = await _productService.findOneAndUpdate({ _id: req.params.id }, newBid, { new: true })
             if (data) {
-                //notify sockets of new bid
                 socket.notifyBid(data)
                 return res.send(data)
             }
