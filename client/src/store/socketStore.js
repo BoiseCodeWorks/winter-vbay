@@ -12,7 +12,7 @@ export default {
                 console.log('Connected to socket, villany may commence')
             })
 
-            //register all listeners
+            // register all listeners
             socket.on('bid', data => {
                 commit('updateProduct', data)
             })

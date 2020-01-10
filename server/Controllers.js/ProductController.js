@@ -1,6 +1,6 @@
 import express from 'express'
 import _productService from '../Services/ProductService'
-import socket from '../socket/index'
+import socket from '../socket/SocketService'
 
 //PUBLIC
 export default class ProductsController {

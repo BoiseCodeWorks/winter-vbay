@@ -1,7 +1,7 @@
 import express from "express"
 import bp from "body-parser"
 import DbContext from "./db/dbconfig"
-import Socket from './socket'
+import Socket from './socket/SocketService'
 import cors from 'cors'
 
 //Import Routes
